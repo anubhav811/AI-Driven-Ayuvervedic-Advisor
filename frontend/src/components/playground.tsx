@@ -7,10 +7,11 @@ import {
   useChatMessages,
   IStep,
 } from "@chainlit/react-client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Playground() {
   const [inputValue, setInputValue] = useState("");
+  const [initialMessageSent, setInitialMessageSent] = useState(false); // State to track if initial message has been sent
   const { sendMessage } = useChatInteract();
   const { messages } = useChatMessages();
 
@@ -28,6 +29,25 @@ export function Playground() {
       setInputValue("");
     }
   };
+
+  // useEffect to send initial message when component mounts
+  useEffect(() => {
+    // Check if initial message has not been sent yet
+    if (!initialMessageSent) {
+      const initialMessage: IStep = {
+        id: uuidv4(),
+        name: "AyurvedaGPT",
+        type: "assistant_message",
+        output:
+          "Hi, I am AyurvedaGPT. I am here to answer your medical queries and provide you with Ayurvedic remedies for the same. You may ask your query now.",
+        createdAt: new Date().toISOString(),
+      };
+      sendMessage(initialMessage, []);
+      // Mark initial message as sent in sessionStorage
+      sessionStorage.setItem('initialMessageSent', 'true');
+      setInitialMessageSent(true);
+    }
+  }, [sendMessage, initialMessageSent]);
 
   const renderMessage = (message: IStep) => {
     const dateOptions: Intl.DateTimeFormatOptions = {

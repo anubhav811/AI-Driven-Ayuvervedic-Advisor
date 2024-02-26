@@ -1,15 +1,9 @@
-import getpass
-from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.prompts import PromptTemplate
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
-from langchain_community.llms import CTransformers
 from langchain_community.llms import HuggingFaceEndpoint
 from langchain.chains import RetrievalQA
 import chainlit as cl
-import os
-from chainlit.playground.config import add_llm_provider
-from chainlit.playground.providers.langchain import LangchainGenericProvider
 
 
 DB_FAISS_PATH = 'vectorstore/db_faiss'
