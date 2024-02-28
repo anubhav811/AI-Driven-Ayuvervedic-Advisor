@@ -11,9 +11,10 @@ DB_FAISS_PATH = 'vectorstore/db_faiss'
 
 custom_prompt_template = """You are an Ayurveda Expert . Use the following pieces of information to answer the user's question in detail.
 If you don't know the answer, just say that you don't know, don't try to make up an answer.
+Format the entire answer in markdown format, with bolds , italics , and pointers wherever required .
 Context: {context}
 Question: {question}
-Only return the helpful answer below and nothing else.
+Only return the helpful answer below and nothing else. For answers exceeding 120 tokens , answer in points. 
 Helpful answer:
 """
 
@@ -70,12 +71,14 @@ async def on_chat_start():
 
 @cl.on_message
 async def on_message(message: cl.Message):
+    print(message.content)
     chain = cl.user_session.get("chain") 
     cb = cl.AsyncLangchainCallbackHandler(
         stream_final_answer=True, answer_prefix_tokens=["FINAL", "ANSWER"]
     )
     cb.answer_reached = True
-    res = await chain.acall(message.content, callbacks=[cb])
+    res = await chain.ainvoke(message.content, callbacks=[cb])
     answer = res["result"]
+    print(answer)
     await cl.Message(content=answer).send()
 

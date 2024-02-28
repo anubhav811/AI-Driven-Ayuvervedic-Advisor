@@ -1,19 +1,56 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { v4 as uuidv4 } from "uuid";
+import ReactMarkdown from "react-markdown"; // Import ReactMarkdown
 
 import {
   useChatInteract,
   useChatMessages,
   IStep,
+  useChatSession,
+  sessionState,
+  ChainlitAPI,
 } from "@chainlit/react-client";
 import { useState, useEffect } from "react";
+import { useRecoilValue } from "recoil";
+import Markdown from "react-markdown";
+
+const CHAINLIT_SERVER = "http://localhost:8000";
+const userEnv = {};
+
+const apiClient = new ChainlitAPI(CHAINLIT_SERVER);
 
 export function Playground() {
   const [inputValue, setInputValue] = useState("");
-  const [initialMessageSent, setInitialMessageSent] = useState(false); // State to track if initial message has been sent
+  const [initialMessageSent, setInitialMessageSent] = useState(false);
   const { sendMessage } = useChatInteract();
   const { messages } = useChatMessages();
+
+  const { connect } = useChatSession();
+  const session = useRecoilValue(sessionState);
+
+  useEffect(() => {
+    connect({ client: apiClient, userEnv });
+  }, [session, connect]);
+
+  const sendInitialMessage = () => {
+    const initialMessage: IStep = {
+      id: uuidv4(),
+      name: "AyurvedaGPT",
+      type: "assistant_message",
+      output:
+        "Hi, I am AyurvedaGPT. I am here to answer your medical queries and provide you with Ayurvedic remedies for the same. You may ask your query now.",
+      createdAt: new Date().toISOString(),
+    };
+    sendMessage(initialMessage, []);
+    setInitialMessageSent(true);
+  };
+
+  useEffect(() => {
+    if (!initialMessageSent) {
+      // sendInitialMessage();
+    }
+  }, [initialMessageSent, sendMessage]);
 
   const handleSendMessage = () => {
     const content = inputValue.trim();
@@ -30,50 +67,18 @@ export function Playground() {
     }
   };
 
-  // useEffect to send initial message when component mounts
-  useEffect(() => {
-    // Check if initial message has not been sent yet
-    if (!initialMessageSent) {
-      const initialMessage: IStep = {
-        id: uuidv4(),
-        name: "AyurvedaGPT",
-        type: "assistant_message",
-        output:
-          "Hi, I am AyurvedaGPT. I am here to answer your medical queries and provide you with Ayurvedic remedies for the same. You may ask your query now.",
-        createdAt: new Date().toISOString(),
-      };
-      sendMessage(initialMessage, []);
-      // Mark initial message as sent in sessionStorage
-      sessionStorage.setItem('initialMessageSent', 'true');
-      setInitialMessageSent(true);
-    }
-  }, [sendMessage, initialMessageSent]);
-
-  const renderMessage = (message: IStep) => {
-    const dateOptions: Intl.DateTimeFormatOptions = {
-      hour: "2-digit",
-      minute: "2-digit",
-    };
-    const date = new Date(message.createdAt).toLocaleTimeString(
-      undefined,
-      dateOptions
-    );
-    return (
-      <div key={message.id} className="flex items-start space-x-2">
-        <div className="w-20 text-sm text-green-500">{message.name}</div>
-        <div className="flex-1 border rounded-lg p-2">
-          <p className="text-black dark:text-white">{message.output}</p>
-          <small className="text-xs text-gray-500">{date}</small>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
       <div className="flex-1 overflow-auto p-6">
         <div className="space-y-4">
-          {messages.map((message) => renderMessage(message))}
+          {messages.map((message) => (
+            <div key={message.id} className="flex items-start space-x-2">
+              <div className="w-20 text-sm text-green-500">{message.name}</div>
+              <div className="flex-1 border rounded-lg p-2">
+                <Markdown>{message.output}</Markdown> 
+              </div>
+            </div>
+          ))}
         </div>
       </div>
       <div className="border-t p-4 bg-white dark:bg-gray-800">
