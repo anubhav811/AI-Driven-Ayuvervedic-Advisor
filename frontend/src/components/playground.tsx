@@ -1,7 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { v4 as uuidv4 } from "uuid";
-import ReactMarkdown from "react-markdown"; // Import ReactMarkdown
 
 import {
   useChatInteract,
@@ -22,7 +21,7 @@ const apiClient = new ChainlitAPI(CHAINLIT_SERVER);
 
 export function Playground() {
   const [inputValue, setInputValue] = useState("");
-  const [initialMessageSent, setInitialMessageSent] = useState(false);
+  // const [initialMessageSent, setInitialMessageSent] = useState(false);
   const { sendMessage } = useChatInteract();
   const { messages } = useChatMessages();
 
@@ -33,24 +32,24 @@ export function Playground() {
     connect({ client: apiClient, userEnv });
   }, [session, connect]);
 
-  const sendInitialMessage = () => {
-    const initialMessage: IStep = {
-      id: uuidv4(),
-      name: "AyurvedaGPT",
-      type: "assistant_message",
-      output:
-        "Hi, I am AyurvedaGPT. I am here to answer your medical queries and provide you with Ayurvedic remedies for the same. You may ask your query now.",
-      createdAt: new Date().toISOString(),
-    };
-    sendMessage(initialMessage, []);
-    setInitialMessageSent(true);
-  };
+  // const sendInitialMessage = () => {
+  //   const initialMessage: IStep = {
+  //     id: uuidv4(),
+  //     name: "AyurvedaGPT",
+  //     type: "assistant_message",
+  //     output:
+  //       "Hi, I am AyurvedaGPT. I am here to answer your medical queries and provide you with Ayurvedic remedies for the same. You may ask your query now.",
+  //     createdAt: new Date().toISOString(),
+  //   };
+  //   sendMessage(initialMessage, []);
+  //   setInitialMessageSent(true);
+  // };
 
-  useEffect(() => {
-    if (!initialMessageSent) {
-      // sendInitialMessage();
-    }
-  }, [initialMessageSent, sendMessage]);
+  useEffect(()=>{})
+  //   if (!initialMessageSent) {
+  //     // sendInitialMessage();
+  //   }
+  // }, [initialMessageSent, sendMessage]);
 
   const handleSendMessage = () => {
     const content = inputValue.trim();
