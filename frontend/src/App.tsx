@@ -1,11 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Playground } from "./components/playground";
-import { LandingPage } from "./components/LandingPage";
-import { PrakrutiAnalyzerPage } from "./components/PrakrutiAnalyzerPage";
+import { Playground } from "./components/pages/Chatbot";
+import { LandingPage } from "./components/pages/LandingPage";
+import { PrakrutiAnalyzerPage } from "./components/pages/PrakrutiAnalyzer";
 
 
 function App() {
-
   return (
     <Router>
       <Routes>
