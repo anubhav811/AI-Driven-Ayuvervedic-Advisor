@@ -1,10 +1,22 @@
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export const About: React.FC = () => {
   return (
-    <section id="about" className="bg-[#DDF8E8] dark:bg-gray-900">
-      <div className="grid max-w-screen-xl px-4 py-4 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-        <div className="mr-auto place-self-center lg:col-span-7">
+    <motion.section
+      id="about"
+      className="bg-[#DDF8E8] dark:bg-gray-900"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="grid max-w-screen-xl px-4 py-10 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+        <motion.div
+          className="mr-auto place-self-center lg:col-span-7"
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
             AI-powered Ayurvedic Assistant
           </h1>
@@ -41,11 +53,16 @@ export const About: React.FC = () => {
               </svg>
             </button>
           </Link>
-        </div>
-        <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
+        </motion.div>
+        <motion.div
+          className="hidden lg:mt-0 lg:col-span-5 lg:flex"
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
           <img src="ayurveda.png" alt="mockup" />
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
