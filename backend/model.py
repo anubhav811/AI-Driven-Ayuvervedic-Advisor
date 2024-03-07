@@ -121,8 +121,8 @@ gdrive_links = {
     "API-Vol-5" : "https://drive.google.com/file/d/1232WVvg2pDANF3Fa1YCHoUarJFrKfOWy/view?usp=sharing",
     "API-Vol-6" : "https://drive.google.com/file/d/1jnoEVhG8J2cwsdIMcqnC7qimIu7zwGGV/view?usp=sharing",
     "API-Vol-7" : "https://drive.google.com/file/d/1rodbElae42P7kFm08IM7RfrjX4Ih7DMi/view?usp=sharing",
-    "Ayurveda - The science of self healing (Dr. Vasant Lad)" : "https://drive.google.com/file/d/1_9O_77sHqk2eacTDkzAY-wBVc9umEmcq/view?usp=sharing",
-    "Ayurvedic Cooking for Self Healing (Usha Lad , Dr.Vasant Lad)" : "https://drive.google.com/file/d/11UXL2uKDb7QSR-xvpcuQfbKCZESvJxAq/view?usp=sharing",
-    "Charaka Samhita (Acharya Charaka)" : "https://drive.google.com/file/d/1J3Wb1tj9t-PjLrMzzvOhhh_8IqPNZOZX/view?usp=sharing",
-    "The Yoga of Herbs-An Ayurvedic guide to herbal medicine (Dr. David Frawley , Dr. Vasant Lad)" :"https://drive.google.com/file/d/16mdn9J6OGMNgixW2SsQpakDhhnmvBEZq/view?usp=sharing"
+    "Ayurveda_The_science_of_self_healing_by_Dr_Vasant_Lad" : "https://drive.google.com/file/d/1_9O_77sHqk2eacTDkzAY-wBVc9umEmcq/view?usp=sharing",
+    "Ayurvedic_Cooking_for_Self_Healing_by_Usha_Lad_and_Dr_Vasant_Lad" : "https://drive.google.com/file/d/11UXL2uKDb7QSR-xvpcuQfbKCZESvJxAq/view?usp=sharing",
+    "Charaka_Samhita_by_Acharya_Charaka" : "https://drive.google.com/file/d/1J3Wb1tj9t-PjLrMzzvOhhh_8IqPNZOZX/view?usp=sharing",
+    "The_Yoga_of_Herbs-An_Ayurvedic_guide_to_herbal_medicine_by_Dr_David_Frawley_and_Dr_Vasant_Lad" :"https://drive.google.com/file/d/16mdn9J6OGMNgixW2SsQpakDhhnmvBEZq/view?usp=sharing"
 }

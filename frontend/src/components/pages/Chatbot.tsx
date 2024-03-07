@@ -18,7 +18,7 @@ import { useRecoilValue } from "recoil";
 import { ChatMessage } from "../ui/ChatMessage";
 import { Shimmer } from "../ui/Shimmer";
 
-const CHAINLIT_SERVER = "http://localhost:8000";
+const CHAINLIT_SERVER = "13.228.225.19";
 const userEnv = {};
 
 const apiClient = new ChainlitAPI(CHAINLIT_SERVER);
