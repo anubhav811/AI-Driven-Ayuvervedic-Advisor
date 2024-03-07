@@ -1,0 +1,17 @@
+API-Vol-1.pdf
+API-Vol-2.1.pdf
+API-Vol-2.2.pdf
+API-Vol-2.3.pdf
+API-Vol-2.4.pdf
+API-Vol-2.5.pdf
+API-Vol-2.pdf
+API-Vol-3.pdf
+API-Vol-4.pdf
+API-Vol-5.pdf
+API-Vol-6.pdf
+API-Vol-7.pdf
+Ayurveda - The science of self healing (Dr. Vasant Lad).pdf
+Ayurvedic Cooking for Self Healing (Usha Lad , Dr.Vasant Lad).pdf
+Charaka Samhita (Acharya Charaka).pdf
+sd.py
+The Yoga of Herbs-An Ayurvedic guide to herbal medicine (Dr. David Frawley , Dr. Vasant Lad).pdf

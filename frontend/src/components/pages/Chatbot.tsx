@@ -10,9 +10,13 @@ import {
   sessionState,
   ChainlitAPI,
 } from "@chainlit/react-client";
+
+
 import { useState, useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import Markdown from "react-markdown";
+// import Markdown from "react-markdown";
+import { ChatMessage } from "../ui/ChatMessage";
+import { Shimmer } from "../ui/Shimmer";
 
 const CHAINLIT_SERVER = "http://localhost:8000";
 const userEnv = {};
@@ -20,43 +24,37 @@ const userEnv = {};
 const apiClient = new ChainlitAPI(CHAINLIT_SERVER);
 
 export function Playground() {
+  
   const [inputValue, setInputValue] = useState("");
-  // const [initialMessageSent, setInitialMessageSent] = useState(false);
+  const [isResponsePending, setIsResponsePending] = useState(false);
   const { sendMessage } = useChatInteract();
   const { messages } = useChatMessages();
-
   const { connect } = useChatSession();
   const session = useRecoilValue(sessionState);
-
+  const startTime = new Date().toISOString();
+  
   useEffect(() => {
+        
     connect({ client: apiClient, userEnv });
+  
   }, [session, connect]);
 
-  // const sendInitialMessage = () => {
-  //   const initialMessage: IStep = {
-  //     id: uuidv4(),
-  //     name: "AyurvedaGPT",
-  //     type: "assistant_message",
-  //     output:
-  //       "Hi, I am AyurvedaGPT. I am here to answer your medical queries and provide you with Ayurvedic remedies for the same. You may ask your query now.",
-  //     createdAt: new Date().toISOString(),
-  //   };
-  //   sendMessage(initialMessage, []);
-  //   setInitialMessageSent(true);
-  // };
-
-  useEffect(()=>{})
-  //   if (!initialMessageSent) {
-  //     // sendInitialMessage();
-  //   }
-  // }, [initialMessageSent, sendMessage]);
+  useEffect(() => {
+    if (messages.length > 0) {
+      const lastMessage = messages[messages.length - 1];
+      if (lastMessage.name !== "User") {
+        setIsResponsePending(false);
+      }
+    }
+  }, [messages]);
 
   const handleSendMessage = () => {
     const content = inputValue.trim();
     if (content) {
+      setIsResponsePending(true);
       const message: IStep = {
         id: uuidv4(),
-        name: "user",
+        name: "User",
         type: "user_message",
         output: content,
         createdAt: new Date().toISOString(),
@@ -66,18 +64,43 @@ export function Playground() {
     }
   };
 
+  const getCurrentDateTime = (isoString: string): string => {
+    const datetime = new Date(isoString);
+    const hours = datetime.getHours();
+    const minutes = datetime.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const date = datetime.getDate();
+    const month = datetime.getMonth() + 1; // Months are zero-based
+    const year = datetime.getFullYear().toString().slice(-2); // Get last two digits of the year
+  
+    const formattedHours = hours % 12 === 0 ? '12' : (hours % 12).toString().padStart(2, '0');
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+    const formattedDate = date.toString().padStart(2, '0');
+    const formattedMonth = month.toString().padStart(2, '0');
+  
+    return `${formattedHours}:${formattedMinutes} ${ampm} ${formattedDate}/${formattedMonth}/${year}`;
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <div className="flex-1 overflow-auto p-6">
         <div className="space-y-4">
+          <ChatMessage
+            name="Chatbot"
+            time={getCurrentDateTime(startTime)}
+            content="Hi I am your personal Ayurvedic Advisor. I am here to answer your medical queries and provide you Ayurvedic remedies for the same. You may ask your query now."
+          />
+
           {messages.map((message) => (
-            <div key={message.id} className="flex items-start space-x-2">
-              <div className="w-20 text-sm text-green-500">{message.name}</div>
-              <div className="flex-1 border rounded-lg p-2">
-                <Markdown>{message.output}</Markdown> 
-              </div>
-            </div>
+            <ChatMessage
+              key={message.id}
+              name={message.name}
+              time={getCurrentDateTime(new Date().toISOString())}
+              content={message.output}
+            />
           ))}
+
+          {isResponsePending && <Shimmer />}
         </div>
       </div>
       <div className="border-t p-4 bg-white dark:bg-gray-800">
@@ -102,4 +125,5 @@ export function Playground() {
       </div>
     </div>
   );
+
 }
