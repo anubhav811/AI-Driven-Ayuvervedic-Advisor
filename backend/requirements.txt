@@ -9,3 +9,4 @@ faiss_cpu
 chainlit
 huggingface_hub
 openai
+cryptography
