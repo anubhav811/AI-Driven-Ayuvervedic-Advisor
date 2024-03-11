@@ -1,0 +1,19 @@
+# Use an existing base image with Python installed
+FROM python:3.8
+
+# Set the working directory inside the container
+WORKDIR /docker-package
+
+# Copy the requirements file to the working directory
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy all files from the current directory to the working directory inside the container
+COPY . .
+
+# Expose the port your application runs on
+EXPOSE 8000
+# command to run your application
+CMD ["chainlit", "run", "model.py", "-h"]

@@ -18,7 +18,7 @@ import { useRecoilValue } from "recoil";
 import { ChatMessage } from "../ui/ChatMessage";
 import { Shimmer } from "../ui/Shimmer";
 
-const CHAINLIT_SERVER = "13.228.225.19";
+const CHAINLIT_SERVER = "https://ayurveda-chatbot-backend.onrender.com";
 const userEnv = {};
 
 const apiClient = new ChainlitAPI(CHAINLIT_SERVER);
