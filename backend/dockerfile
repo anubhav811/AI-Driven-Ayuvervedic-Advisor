@@ -1,5 +1,5 @@
 # Use an existing base image with Python installed
-FROM python:3.8
+FROM python:3.9
 
 # Set the working directory inside the container
 WORKDIR /docker-package
@@ -8,7 +8,9 @@ WORKDIR /docker-package
 COPY requirements.txt .
 
 # Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apt-get update
+RUN pip install -r requirements.txt
+RUN python ingest.py
 
 # Copy all files from the current directory to the working directory inside the container
 COPY . .
