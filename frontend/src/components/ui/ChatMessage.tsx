@@ -14,7 +14,6 @@ export const ChatMessage: React.FC<ChatMessageProps>  = ({
   content,
 }) => {
   const isFromChatbot = name === "Chatbot";
-
   return (
     <motion.div
       className="flex items-start gap-2.5 "
