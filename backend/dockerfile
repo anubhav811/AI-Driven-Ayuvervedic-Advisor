@@ -1,21 +1,17 @@
 # Use an existing base image with Python installed
 FROM python:3.9
 
-# Set the working directory inside the container
-WORKDIR /docker-package
-
-# Copy the requirements file to the working directory
+WORKDIR /
 COPY requirements.txt .
-
 # Install Python dependencies
 RUN apt-get update
-RUN pip install -r requirements.txt
-RUN python ingest.py
-
-# Copy all files from the current directory to the working directory inside the container
-COPY . .
-
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt 
 # Expose the port your application runs on
 EXPOSE 8000
+
+COPY model.py .
+COPY ./.chainlit .
+
 # command to run your application
 CMD ["chainlit", "run", "model.py", "-h"]
