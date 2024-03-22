@@ -21,7 +21,11 @@ const userEnv = {};
 
 const apiClient = new ChainlitAPI(CHAINLIT_SERVER);
 
+<<<<<<< HEAD
 export function Chatbot() {
+=======
+export function Playground() {
+>>>>>>> 071f8dd209ca07f66e98fffb0f4eb5d90773a480
   const [inputValue, setInputValue] = useState("");
   const [isResponsePending, setIsResponsePending] = useState(false);
   const { sendMessage } = useChatInteract();
@@ -78,6 +82,7 @@ export function Chatbot() {
 
   return (
     <div className="min-h-screen flex flex-col">
+<<<<<<< HEAD
       <div className="flex-1 flex flex-col overflow-auto p-6 pb-20">
         <div className="space-y-4">
           <ChatMessage
@@ -87,16 +92,30 @@ export function Chatbot() {
           />
 
           {messages.map((message) => (
+=======
+      <div className="flex-1 flex flex-col">
+        <div className="flex-1 overflow-auto p-6">
+          <div className="space-y-4">
+>>>>>>> 071f8dd209ca07f66e98fffb0f4eb5d90773a480
             <ChatMessage
-              key={message.id}
-              name={message.name}
-              time={getCurrentDateTime(new Date().toISOString())}
-              content={message.output}
+              name="Chatbot"
+              time={getCurrentDateTime(startTime)}
+              content="Hi I am your personal Ayurvedic Advisor. I am here to answer your medical queries and provide you Ayurvedic remedies for the same. You may ask your query now."
             />
-          ))}
 
-          {isResponsePending && <Shimmer />}
+            {messages.map((message) => (
+              <ChatMessage
+                key={message.id}
+                name={message.name}
+                time={getCurrentDateTime(new Date().toISOString())}
+                content={message.output}
+              />
+            ))}
+
+            {isResponsePending && <Shimmer />}
+          </div>
         </div>
+<<<<<<< HEAD
       </div>
       <div className="border-t p-4 bg-white dark:bg-gray-800 fixed bottom-0 left-0 right-0">
         <div className="flex items-center space-x-2">
@@ -116,6 +135,27 @@ export function Chatbot() {
           <Button onClick={handleSendMessage} type="submit">
             Send
           </Button>
+=======
+        <div className="border-t p-4 bg-white dark:bg-gray-800 fixed bottom-0 left-0 right-0">
+          <div className="flex items-center space-x-2">
+            <Input
+              autoFocus
+              className="flex-1"
+              id="message-input"
+              placeholder="Type a message"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyUp={(e) => {
+                if (e.key === "Enter") {
+                  handleSendMessage();
+                }
+              }}
+            />
+            <Button onClick={handleSendMessage} type="submit">
+              Send
+            </Button>
+          </div>
+>>>>>>> 071f8dd209ca07f66e98fffb0f4eb5d90773a480
         </div>
       </div>
     </div>

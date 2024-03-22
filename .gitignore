@@ -1,5 +1,8 @@
 backend/.env
+<<<<<<< HEAD
 backend/test
 backend/llama-2-7b-chat.ggmlv3.q8_0.bin
 backend/apollo-7b.Q4_K_M.gguf
 backend/__pycache__
+=======
+>>>>>>> 071f8dd209ca07f66e98fffb0f4eb5d90773a480
