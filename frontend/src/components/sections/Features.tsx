@@ -52,7 +52,7 @@ export const Features: React.FC = () => {
               </Link>
             </PinContainer>
             <PinContainer title="Go to Prakruti analyzer">
-              <Link to="/prakruti-analyzer">
+              <Link to="https://tripetto.app/run/TIOR5D98J8">
                 <motion.div
                   variants={pinVariants}
                   initial="hidden"
