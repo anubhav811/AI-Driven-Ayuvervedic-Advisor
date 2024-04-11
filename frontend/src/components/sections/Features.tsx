@@ -52,7 +52,7 @@ export const Features: React.FC = () => {
               </Link>
             </PinContainer>
             <PinContainer title="Go to Prakruti analyzer">
-              <Link to="/prakruti-analyzer">
+              <Link to="https://tripetto.app/run/TIOR5D98J8">
                 <motion.div
                   variants={pinVariants}
                   initial="hidden"
@@ -61,7 +61,7 @@ export const Features: React.FC = () => {
                   className="flex basis-full flex-col p-4 tracking-tight text-black sm:basis-1/2 w-[20rem] h-[20rem] "
                 >
                   <h3 className="text-xl max-w-xs !pb-2 !m-0 font-bold text-base text-slate-800">
-                    Analyze Prakruti 
+                    Analyze Prakruti 🧠
                   </h3>
                   <div className="text-base !m-0 !p-0 font-normal">
                     <span>

@@ -37,20 +37,8 @@ export const About: React.FC = () => {
           >
             <button className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#171717,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
               Get Started
-              <svg
-                className="w-5 h-5 ml-2 -mr-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 9l-7 7-7-7"
-                ></path>
-              </svg>
+          
+            
             </button>
           </Link>
         </motion.div>
@@ -60,7 +48,7 @@ export const About: React.FC = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          <img src="ayurveda.png" alt="mockup" />
+          <img src="ayurveda.png" />
         </motion.div>
       </div>
     </motion.section>

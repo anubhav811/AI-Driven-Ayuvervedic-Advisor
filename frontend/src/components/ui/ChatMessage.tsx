@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-import Markdown from 'react-markdown';
+import Markdown from "react-markdown";
 
 interface ChatMessageProps {
   name: string;
@@ -8,13 +8,12 @@ interface ChatMessageProps {
   content: string;
 }
 
-export const ChatMessage: React.FC<ChatMessageProps>  = ({
+export const ChatMessage: React.FC<ChatMessageProps> = ({
   name,
   time,
   content,
 }) => {
   const isFromChatbot = name === "Chatbot";
-
   return (
     <motion.div
       className="flex items-start gap-2.5 "
@@ -36,7 +35,14 @@ export const ChatMessage: React.FC<ChatMessageProps>  = ({
             {time}
           </span>
         </div>
-        <Markdown className="markdown">{content}</Markdown>
+        <motion.div
+          className="flex items-start gap-2.5 "
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Markdown className="markdown">{content}</Markdown>
+        </motion.div>
       </div>
     </motion.div>
   );

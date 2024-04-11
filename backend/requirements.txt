@@ -7,6 +7,5 @@ ctransformers
 sentence_transformers
 faiss_cpu
 chainlit
-huggingface_hub
 openai
 cryptography

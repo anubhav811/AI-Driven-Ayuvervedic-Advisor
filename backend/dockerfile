@@ -1,0 +1,17 @@
+# Use an existing base image with Python installed
+FROM python:3.9
+
+WORKDIR /
+COPY requirements.txt .
+# Install Python dependencies
+RUN apt-get update
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt 
+# Expose the port your application runs on
+EXPOSE 8000
+
+COPY model.py .
+COPY ./.chainlit .
+
+# command to run your application
+CMD ["chainlit", "run", "model.py", "-h"]
