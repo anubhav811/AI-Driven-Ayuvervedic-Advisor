@@ -104,7 +104,8 @@ async def on_message(message: cl.Message):
     print(len(answer))
     
     answer = add_sources_to_answer(sources, answer)
-    await cl.Message(content=answer).send()
-    
     cl.user_session.set("context",message_history)
     message_history.append({"role":"assistant","content":answer})
+
+    await cl.Message(content=answer).send()
+    

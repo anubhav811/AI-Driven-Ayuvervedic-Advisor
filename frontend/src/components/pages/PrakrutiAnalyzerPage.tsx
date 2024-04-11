@@ -19,7 +19,6 @@ export const PrakrutiAnalyzerPage = () => {
                         zIndex: '9999',
                     }}
                 >
-                    {/* Your loader component goes here */}
                     <p>Loading...</p>
                 </div>
             )}
