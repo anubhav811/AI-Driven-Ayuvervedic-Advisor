@@ -10,13 +10,13 @@ DB_FAISS_PATH = 'vectorstore/db_faiss'
 
 custom_prompt_template = """
 You are an Ayurveda Advisor. Use the following pieces of information to answer the user's question in detail. When discussing 
-medicines and remedies, ensure to include precautions and exceptions where necessary.
+medicines and remedies, ensure to include precautions and exceptions where necessary.Dont include references section.
 Create stand-alone question from follow up question retaining context from previous exchange.
 Format the entire answer in markdown format, with bolds, italics, and pointers wherever required.
 Only return the helpful answer below and nothing else. For answers exceeding 120 tokens, answer in points.
 Context: {context}
 Question: {question}
-Helpful answer: Lets think step by step
+Lets think step by step
 """
 
 def set_custom_prompt():
@@ -32,17 +32,18 @@ class Document:
 def add_sources_to_answer(sources, answer):
     if(len(sources)>0):
         answer+=f"\n#### References\n"
-        i = 1
+        i = 0
         for source in sources:
-            formatted_content = format_source_content(source,i)
             i+=1
-            answer += formatted_content
+            answer += format_source_content(source,i)
     return answer
 
 def format_source_content(source,i):
     metadata = source.metadata
     file_name = metadata["source"].split('\\')[-1].split(".pdf")[0]
+    page_content = source.page_content
     formatted_content = f"##### {i}.{file_name}\n"
+    formatted_content += f"Source Content :_{page_content}_\n"
     return formatted_content
 
 
@@ -55,14 +56,6 @@ def retrieval_qa_chain(llm, prompt, db):
                                        )
     return qa_chain
 def load_llm():
-
-    # llm = CTransformers(
-    #     model = "TheBloke/Llama-2-7B-Chat-GGML",
-    #     model_type="llama",
-    #     max_new_tokens = 1024,
-    #     temperature = 0.3
-    # )
-    # return llm
 
     llm = HuggingFaceEndpoint(
         repo_id="mistralai/Mistral-7B-Instruct-v0.2", 
@@ -87,7 +80,7 @@ def create_chat_bot_chain():
 async def on_chat_start():
     chain = create_chat_bot_chain()
     cl.user_session.set("context", [])
-    cl.user_session.set("chain", chain)
+    cl.user_session.set("chain", chain) 
 
 @cl.on_message
 async def on_message(message: cl.Message):
@@ -103,17 +96,15 @@ async def on_message(message: cl.Message):
     cb.answer_reached = True
     
     message_history = cl.user_session.get("context")
-    res = await chain.ainvoke(message.content + str(message_history) , callbacks=[cb])
+    res = await chain.ainvoke(message.content + str(message_history), callbacks=[cb])
     answer = res["result"]
     print(answer)
     
-    message_history.append({"role":"assistant","content":answer})
-
     sources = res["source_documents"]
     print(len(answer))
     
     answer = add_sources_to_answer(sources, answer)
-
-    cl.user_session.set("context",message_history)
     await cl.Message(content=answer).send()
     
+    cl.user_session.set("context",message_history)
+    message_history.append({"role":"assistant","content":answer})

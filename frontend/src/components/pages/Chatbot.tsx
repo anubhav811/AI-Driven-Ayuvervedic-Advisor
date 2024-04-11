@@ -23,8 +23,8 @@ const apiClient = new ChainlitAPI(CHAINLIT_SERVER);
 
 export function Playground() {
   const [inputValue, setInputValue] = useState("");
-  const [isResponsePending, setIsResponsePending] = useState(false);
   const { sendMessage } = useChatInteract();
+  const [isResponsePending, setIsResponsePending] = useState(false);
   const { messages } = useChatMessages();
   const { connect } = useChatSession();
   const session = useRecoilValue(sessionState);
@@ -57,6 +57,7 @@ export function Playground() {
       sendMessage(message, []);
       setInputValue("");
     }
+    console.log(messages)
   };
 
   const getCurrentDateTime = (isoString: string): string => {
@@ -65,8 +66,8 @@ export function Playground() {
     const minutes = datetime.getMinutes();
     const ampm = hours >= 12 ? "PM" : "AM";
     const date = datetime.getDate();
-    const month = datetime.getMonth() + 1; // Months are zero-based
-    const year = datetime.getFullYear().toString().slice(-2); // Get last two digits of the year
+    const month = datetime.getMonth() + 1;
+    const year = datetime.getFullYear().toString().slice(-2); 
 
     const formattedHours = hours % 12 === 0 ? "12" : (hours % 12).toString().padStart(2, "0");
     const formattedMinutes = minutes.toString().padStart(2, "0");
@@ -85,7 +86,7 @@ export function Playground() {
             time={getCurrentDateTime(startTime)}
             content="Hi I am your personal Ayurvedic Advisor. I am here to answer your medical queries and provide you Ayurvedic remedies for the same. You may ask your query now."
           />
-
+      
           {messages.map((message) => (
             <ChatMessage
               key={message.id}
@@ -94,7 +95,6 @@ export function Playground() {
               content={message.output}
             />
           ))}
-
           {isResponsePending && <Shimmer />}
         </div>
       </div>
