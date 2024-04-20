@@ -21,7 +21,7 @@ const userEnv = {};
 
 const apiClient = new ChainlitAPI(CHAINLIT_SERVER);
 
-export function Playground() {
+export function Chatbot() {
   const [inputValue, setInputValue] = useState("");
   const { sendMessage } = useChatInteract();
   const [isResponsePending, setIsResponsePending] = useState(false);
