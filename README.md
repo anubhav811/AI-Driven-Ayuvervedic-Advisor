@@ -81,3 +81,14 @@ The results were as follows:
 
 
 In the realm of Ayurvedic queries, where accuracy, relevance, and fidelity to context are paramount, the **Mistral model** emerges as the most suitable choice. With its exemplary faithfulness score of **0.8611**, Mistral ensures that generated answers align closely with the provided context, thereby preserving the accuracy of traditional Ayurvedic knowledge. While other models excel in specific aspects such as answer relevancy (Gemma) or answer correctness (GPT), Mistral strikes a balance by offering a robust performance across all essential metrics, making it the optimal choice for addressing inquiries in Ayurveda with precision and reliability.
+
+
+## About the Author
+
+This project, "AI-Driven Ayurvedic Advisor: A Conversational Chatbot," was developed as the capstone project by Anubhav Chachra (Reg. No 20BIT0104) for VIT Vellore. 
+
+Project report: [Drive Link](<insert_drive_link_here>)
+
+---
+
+Feel free to contact Anubhav Chachra for any inquiries or collaborations related to this project.
