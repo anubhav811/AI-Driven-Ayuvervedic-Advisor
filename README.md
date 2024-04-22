@@ -1,4 +1,4 @@
-![image](https://github.com/anubhav811/Capstone-Project-20BIT0104/assets/71807967/06f5a509-480e-4688-949b-27e40cf2bc5f)# AI-Driven Ayurvedic Advisor: A Conversational Chatbot
+# AI-Driven Ayurvedic Advisor: A Conversational Chatbot
 
 In response to the escalating challenges of stress-related disorders and chronic health conditions, there is a growing demand for comprehensive wellness solutions merging traditional practices with modern technology. This project presents an innovative approach that combines ancient Ayurvedic wisdom with cutting-edge AI technologies, particularly chatbots built upon Large Language Models (LLMs), essentially developing a conversational health assistant. 
 
