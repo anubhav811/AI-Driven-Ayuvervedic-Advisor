@@ -55,10 +55,11 @@ def retrieval_qa_chain(llm, prompt, db):
                                        chain_type_kwargs={'prompt': prompt}
                                        )
     return qa_chain
+
 def load_llm():
 
     llm = HuggingFaceEndpoint(
-        repo_id="mistralai/Mistral-7B-Instruct-v0.2", 
+        repo_id="HuggingFaceH4/zephyr-7b-beta", 
         huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN"),
         max_new_tokens = 1024,
         temperature = 0.1,

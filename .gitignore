@@ -1,5 +1,5 @@
 backend/.env
-backend/test
+testing/.env
 backend/llama-2-7b-chat.ggmlv3.q8_0.bin
 backend/apollo-7b.Q4_K_M.gguf
 backend/__pycache__
