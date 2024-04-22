@@ -87,7 +87,7 @@ In the realm of Ayurvedic queries, where accuracy, relevance, and fidelity to co
 
 This project, "AI-Driven Ayurvedic Advisor: A Conversational Chatbot," was developed as the capstone project by Anubhav Chachra (Reg. No 20BIT0104) for VIT Vellore. 
 
-Project report: [Link]([<insert_drive_link_here>](https://drive.google.com/drive/folders/1s_XHT2YfJh1OPXzm4nVIuuZqYxlvhlCi?usp=sharing))
+Project report: [Link](https://drive.google.com/drive/folders/1s_XHT2YfJh1OPXzm4nVIuuZqYxlvhlCi?usp=sharing)
 
 ---
 
