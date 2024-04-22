@@ -59,7 +59,7 @@ npm run dev
 
 Once both the backend and frontend are running, users can navigate to the chatbot section on the website and start asking queries.
 ![image](https://github.com/anubhav811/Capstone-Project-20BIT0104/assets/71807967/5eb1b7e6-c04a-4d35-b548-374462e9c820)
-![Uploading image.png…]()
+![image](https://github.com/anubhav811/Capstone-Project-20BIT0104/assets/71807967/b87e1464-0d2f-47e9-80e7-29b4318172e5)
 ![image](https://github.com/anubhav811/Capstone-Project-20BIT0104/assets/71807967/3f9755d6-3f7a-49d5-a03d-49655365ca2e)
 ![image](https://github.com/anubhav811/Capstone-Project-20BIT0104/assets/71807967/8a837b9b-8af7-4c49-b453-a49e79598dac)
 
