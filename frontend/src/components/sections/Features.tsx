@@ -24,7 +24,7 @@ export const Features: React.FC = () => {
           <h2 className="text-5xl font-bold text-center mb-12">Features</h2>
           <motion.div className="flex flex-wrap justify-center gap-20">
             <PinContainer title="Go to Chatbot">
-              <Link to="/chatbot">
+              <Link to="http://localhost:8000/">
                 <motion.div
                   variants={pinVariants}
                   initial="hidden"

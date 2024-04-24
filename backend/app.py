@@ -16,7 +16,6 @@ Format the entire answer in markdown format, with bolds, italics, and pointers w
 Only return the helpful answer below and nothing else. For answers exceeding 120 tokens, answer in points.
 Context: {context}
 Question: {question}
-Lets think step by step
 """
 
 def set_custom_prompt():
@@ -57,9 +56,8 @@ def retrieval_qa_chain(llm, prompt, db):
     return qa_chain
 
 def load_llm():
-
     llm = HuggingFaceEndpoint(
-        repo_id="HuggingFaceH4/zephyr-7b-beta", 
+        repo_id="mistralai/Mistral-7B-Instruct-v0.2", 
         huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN"),
         max_new_tokens = 1024,
         temperature = 0.1,
